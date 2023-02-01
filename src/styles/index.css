@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+body {
+  background-image: url(../assets/mobile.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+@media (min-width: 760px) {
+  body {
+    background-image: url(../assets/desktop.png);
+  }
+}

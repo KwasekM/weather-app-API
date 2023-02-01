@@ -1,0 +1,138 @@
+/* general */
+p > span {
+  font-size: 12px;
+}
+#root {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+.App {
+  min-width: 240px;
+  max-width: 600px;
+  padding: 2px;
+  margin: 0 auto;
+}
+/* form */
+.form-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.form-container__form {
+  display: flex;
+  flex-basis: 100%;
+  background-color: #fff;
+  border: 3px solid rgba(255, 99, 71, 0);
+  border-radius: 6px;
+}
+.form-container__icon {
+  align-self: center;
+  padding: 0px 10px;
+}
+.form-container__input {
+  font-size: 15px;
+  font-weight: 300;
+  font-style: italic;
+  border: none;
+  outline: none;
+  height: 30px;
+  flex: 1;
+}
+.form-container__btn {
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 3px;
+  background-color: tomato;
+  padding: 4px 20px;
+  height: 30px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.form-container__error-message {
+  flex-basis: 100%;
+  font-size: 14px;
+  color: red;
+  display: none;
+}
+/* weather */
+.weather {
+  margin-top: 10px;
+}
+.weather__top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+.weather__city {
+  flex-basis: 100%;
+  text-align: center;
+  font-weight: 500;
+  margin-top: 10px;
+}
+.weather__temp {
+  align-self: center;
+}
+.weather__description {
+  flex-basis: 100%;
+  font-size: 14px;
+  text-align: center;
+  font-style: italic;
+}
+
+.weather__others {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  padding: 5px;
+}
+.weather__other {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.weather__others-icon {
+  width: 30px;
+}
+
+/* Forecast */
+.forecast {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2px 0;
+}
+.forecast__description {
+  flex-basis: 100%;
+  font-size: 14px;
+  margin: 2px 0px;
+}
+.forecast__elements {
+  flex-basis: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+.forecast__element {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.forecast__hour {
+  font-size: 12px;
+}
+.forecast__icon {
+  width: 30px;
+}
+.forecast__temp {
+  font-size: 14px;
+  font-weight: bold;
+}
