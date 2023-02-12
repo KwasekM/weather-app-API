@@ -1,0 +1,40 @@
+.settings__label {
+  --width: 42px;
+  --height: calc(var(--width) / 2);
+  --border-radius: calc(var(--height) / 2);
+  display: inline-block;
+  position: absolute;
+  cursor: pointer;
+}
+.settings__toggle-input {
+  display: none;
+}
+.settings__toggle-fill {
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+  border-radius: var(--border-radius);
+  background: #dddddd;
+  transition: background 0.2s;
+}
+.settings__toggle-input:checked ~ .settings__toggle-fill {
+  background-color: tomato;
+}
+.settings__toggle-fill::after {
+  content: "°C";
+  text-align: center;
+  font-size: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: var(--height);
+  width: var(--height);
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: var(--border-radius);
+  transition: transform 0.2s;
+}
+.settings__toggle-input:checked ~ .settings__toggle-fill::after {
+  content: "°F";
+  transform: translateX(var(--height));
+}

@@ -5,14 +5,26 @@
   font-family: "Open Sans", sans-serif;
 }
 body {
-  background-image: url(../assets/mobile.png);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-@media (min-width: 760px) {
-  body {
-    background-image: url(../assets/desktop.png);
-  }
+#root {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 2px;
+}
+.App {
+  min-width: 240px;
+  max-width: 600px;
+  padding: 2px;
+  margin: 0 auto;
+}
+.icon {
+  font-size: 20px;
+  color: greenyellow;
+}
+p > span {
+  font-size: 12px;
 }

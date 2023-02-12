@@ -1,12 +1,15 @@
 import React from "react";
 
-import wind from "../assets/wind1.png";
-import humidity from "../assets/moisture1.png";
-import sunrise from "../assets/sunrise1.png";
-import sunset from "../assets/sunset1.png";
+import wind from "../assets/icons-weather/wind1.png";
+import humidity from "../assets/icons-weather/moisture1.png";
+import sunrise from "../assets/icons-weather/sunrise1.png";
+import sunset from "../assets/icons-weather/sunset1.png";
 
 function changeKelvinToCelcius(number) {
   return Math.round(number - 273.15);
+}
+function changeKelvinToFahrenheit(number) {
+  return Math.round(1.8 * Math.round(number - 273.15) + 32);
 }
 function getTimeFromUnix(unixTimestamp, timezone) {
   let date = new Date((unixTimestamp + timezone) * 1000);
@@ -15,7 +18,7 @@ function getTimeFromUnix(unixTimestamp, timezone) {
   return hours.slice(-2) + ":" + minutes.slice(-2);
 }
 
-function Weather({ data }) {
+function Weather({ data, isToggled }) {
   return (
     <div className="weather">
       <div className="weather__top">
@@ -28,7 +31,9 @@ function Weather({ data }) {
           alt={`${data.weather[0].description}`}
         />
         <h1 className="weather__temp">
-          {changeKelvinToCelcius(data.main.temp)}°C
+          {isToggled
+            ? `${changeKelvinToFahrenheit(data.main.temp)}°F`
+            : `${changeKelvinToCelcius(data.main.temp)}°C`}
         </h1>
         <p className="weather__description">{data.weather[0].description}</p>
         <div className="weather__others">
@@ -70,4 +75,9 @@ function Weather({ data }) {
     </div>
   );
 }
-export { changeKelvinToCelcius, getTimeFromUnix, Weather };
+export {
+  changeKelvinToCelcius,
+  changeKelvinToFahrenheit,
+  getTimeFromUnix,
+  Weather,
+};

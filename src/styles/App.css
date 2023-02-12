@@ -1,38 +1,28 @@
-/* general */
-p > span {
-  font-size: 12px;
-}
-#root {
-  width: 95%;
-  margin: 0 auto;
-  margin-top: 25px;
-}
+@import url(toggle.css);
 
-.App {
-  min-width: 240px;
-  max-width: 600px;
-  padding: 2px;
-  margin: 0 auto;
-}
 /* form */
 .form-container {
   width: 100%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 2px;
 }
-.form-container__form {
+
+.form {
   display: flex;
   flex-basis: 100%;
   background-color: #fff;
   border: 3px solid rgba(255, 99, 71, 0);
   border-radius: 6px;
 }
-.form-container__icon {
+
+.form-icon {
   align-self: center;
   padding: 0px 10px;
 }
-.form-container__input {
+
+.form-input {
   font-size: 15px;
   font-weight: 300;
   font-style: italic;
@@ -41,7 +31,8 @@ p > span {
   height: 30px;
   flex: 1;
 }
-.form-container__btn {
+
+.form-btn {
   font-size: 12px;
   font-weight: 700;
   border-radius: 3px;
@@ -53,7 +44,7 @@ p > span {
   cursor: pointer;
 }
 
-.form-container__error-message {
+.form-error {
   flex-basis: 100%;
   font-size: 14px;
   color: red;
@@ -67,7 +58,7 @@ p > span {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.15);
   border-radius: 10px;
 }
 .weather__city {
@@ -115,7 +106,7 @@ p > span {
 }
 .forecast__elements {
   flex-basis: 100%;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.15);
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -135,4 +126,42 @@ p > span {
 .forecast__temp {
   font-size: 14px;
   font-weight: bold;
+}
+/* settings */
+.settings {
+  width: 100%;
+  margin: 0 auto;
+}
+.settings__para {
+  display: inline-block;
+  margin: 0 40px 10px 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.settings__temperature {
+  margin-top: 20px;
+}
+
+.settings__backgrounds-to-choose {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.settings__img-container {
+  flex-basis: 48%;
+  display: flex;
+  justify-content: center;
+  margin: 3px 2px;
+}
+
+.settings__img {
+  box-shadow: 9px 13px 18px -7px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  border-radius: 20px;
+  height: 250px;
+}
+.settings__img-container--filter {
+  filter: grayscale(90%);
 }

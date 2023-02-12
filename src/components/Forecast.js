@@ -1,8 +1,19 @@
 import React from "react";
 
-import { changeKelvinToCelcius, getTimeFromUnix } from "./Weather";
+import {
+  changeKelvinToCelcius,
+  getTimeFromUnix,
+  changeKelvinToFahrenheit,
+} from "./Weather";
 
-export function Forecast({ hour, icon, description, temp, timezone }) {
+export function Forecast({
+  hour,
+  icon,
+  description,
+  temp,
+  timezone,
+  isToggled,
+}) {
   const localTime = new Date(hour);
   const changedForUnixTimestamp = Math.floor(localTime.getTime() / 1000);
 
@@ -16,7 +27,11 @@ export function Forecast({ hour, icon, description, temp, timezone }) {
         src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
         alt={{ description }}
       />
-      <p className="forecast__temp">{`${changeKelvinToCelcius(temp)}°C`}</p>
+      <p className="forecast__temp">
+        {isToggled
+          ? `${changeKelvinToFahrenheit(temp)}°F`
+          : `${changeKelvinToCelcius(temp)}°C`}
+      </p>
     </div>
   );
 }
