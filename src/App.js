@@ -55,14 +55,15 @@ function App() {
     const URLWeather = `https://api.openweathermap.org/data/2.5/weather?q=${defaultCity}&appid=${APIID}`;
     const URLForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${defaultCity}&appid=${APIID}`;
 
-    async function getInitialData() {
-      const response1 = await fetch(URLWeather);
-      const response2 = await fetch(URLForecast);
-      await processWeatherDataAndForecast(response1, response2);
-      setIsLoading(false);
-    }
-    getInitialData();
+    getInitialData(URLWeather, URLForecast);
   }, []);
+
+  async function getInitialData(URLWeather, URLForecast) {
+    const response1 = await fetch(URLWeather);
+    const response2 = await fetch(URLForecast);
+    await processWeatherDataAndForecast(response1, response2);
+    setIsLoading(false);
+  }
 
   async function newLocation(link1 = URLWeather, link2 = URLForecast) {
     try {
@@ -87,38 +88,19 @@ function App() {
     setDataForecast(arrOfForecast);
   }
 
-  function settingsHandleSubmit(e) {
-    e.preventDefault();
-
-    if (inputDefaultCityRef.current.value) {
-      async function getDefaultCity() {
-        try {
-          const response1 = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${inputDefaultCityRef.current.value}&appid=${APIID}`
-          );
-          if (response1.status === 200) {
-            setDefaultCity(inputDefaultCityRef.current.value);
-            e.target.style.border = `3px solid greenyellow`;
-          } else if (response1.status !== 200) {
-            e.target.style.border = `3px solid rgba(255, 99, 71, 1)`;
-          }
-        } catch (error) {}
-        inputDefaultCityRef.current.value = "";
+  async function getDefaultCity(e) {
+    try {
+      const response1 = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${inputDefaultCityRef.current.value}&appid=${APIID}`
+      );
+      if (response1.status === 200) {
+        setDefaultCity(inputDefaultCityRef.current.value);
+        e.target.style.border = `3px solid greenyellow`;
+      } else if (response1.status !== 200) {
+        e.target.style.border = `3px solid rgba(255, 99, 71, 1)`;
       }
-      getDefaultCity();
-    }
-  }
-
-  function navHandleSubmit(e) {
-    e.preventDefault();
-    if (city) {
-      newLocation();
-      setCity("");
-    }
-  }
-
-  function handleChange(e) {
-    setCity(e.target.value);
+    } catch (error) {}
+    inputDefaultCityRef.current.value = "";
   }
 
   const forecastElements = dataForecast.map((element) => (
@@ -146,9 +128,9 @@ function App() {
               </Link>
               <Nav
                 error={error}
-                navHandleSubmit={navHandleSubmit}
-                handleChange={handleChange}
                 city={city}
+                setCity={setCity}
+                newLocation={newLocation}
               />
               {!isLoading && (
                 <Weather isToggled={isToggled} data={dataWeather} />
@@ -170,7 +152,7 @@ function App() {
               setUserBackgroundImage={setUserBackgroundImage}
               isToggled={isToggled}
               setIsToggled={setIsToggled}
-              settingsHandleSubmit={settingsHandleSubmit}
+              getDefaultCity={getDefaultCity}
               inputDefaultCityRef={inputDefaultCityRef}
             />
           }

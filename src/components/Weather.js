@@ -19,6 +19,31 @@ function getTimeFromUnix(unixTimestamp, timezone) {
 }
 
 function Weather({ data, isToggled }) {
+  const weatherDetails = [
+    {
+      icon: wind,
+      text: `${Math.round(data.wind.speed)}`,
+      span: true,
+      spanText: "m/s",
+    },
+    {
+      icon: humidity,
+      text: `${data.main.humidity}`,
+      span: true,
+      spanText: "%",
+    },
+    {
+      icon: sunrise,
+      text: `${getTimeFromUnix(data.sys.sunrise, data.timezone)}`,
+      span: false,
+    },
+    {
+      icon: sunset,
+      text: `${getTimeFromUnix(data.sys.sunset, data.timezone)}`,
+      span: false,
+    },
+  ];
+
   return (
     <div className="weather">
       <div className="weather__top">
@@ -37,39 +62,19 @@ function Weather({ data, isToggled }) {
         </h1>
         <p className="weather__description">{data.weather[0].description}</p>
         <div className="weather__others">
-          <div className="weather__other">
-            <img className="weather__others-icon" src={wind} alt="wind"></img>
-            <p>
-              {Math.round(data.wind.speed)} <span>m/s</span>
-            </p>
-          </div>
-          <div className="weather__other">
-            <img
-              className="weather__others-icon"
-              src={humidity}
-              alt="humidity"
-            ></img>
-            <p>
-              {data.main.humidity}
-              <span>%</span>
-            </p>
-          </div>
-          <div className="weather__other">
-            <img
-              className="weather__others-icon"
-              src={sunrise}
-              alt="sunrise"
-            ></img>
-            <p>{getTimeFromUnix(data.sys.sunrise, data.timezone)}</p>
-          </div>
-          <div className="weather__other">
-            <img
-              className="weather__others-icon"
-              src={sunset}
-              alt="sunset"
-            ></img>
-            <p>{getTimeFromUnix(data.sys.sunset, data.timezone)}</p>
-          </div>
+          {weatherDetails.map((detail, index) => (
+            <div className="weather__other" key={index}>
+              <img
+                className="weather__others-icon"
+                src={detail.icon}
+                alt="icon"
+              ></img>
+              <p className={`weather__others-detail`}>
+                {detail.text}
+                {detail.span ? <span>{detail.spanText}</span> : null}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ import dataBackgrounds from "../data/dataBackgrounds";
 function Settings({
   isToggled,
   setIsToggled,
-  settingsHandleSubmit,
+  getDefaultCity,
   inputDefaultCityRef,
   setUserBackgroundImage,
   userBackgroundImage,
@@ -25,8 +25,13 @@ function Settings({
       }
       return { ...item, selected: false };
     });
-
     setBackgroundsToChoose(newArray);
+  }
+  function settingsHandleSubmit(e) {
+    e.preventDefault();
+    if (inputDefaultCityRef.current.value) {
+      getDefaultCity(e);
+    }
   }
 
   const backgroundsElements = backgroundsToChoose.map((item) => (

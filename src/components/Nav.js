@@ -1,10 +1,20 @@
 import React from "react";
 
-export default function Nav({ navHandleSubmit, handleChange, city, error }) {
+export default function Nav({ newLocation, setCity, city, error }) {
   const styles = {
     border: `3px solid rgba(255, 99, 71, 1)`,
     display: `block`,
   };
+  function handleChange(e) {
+    setCity(e.target.value);
+  }
+  function navHandleSubmit(e) {
+    e.preventDefault();
+    if (city) {
+      newLocation();
+      setCity("");
+    }
+  }
   return (
     <div className="form-container">
       <form
